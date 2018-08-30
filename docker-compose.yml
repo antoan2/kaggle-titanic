@@ -1,0 +1,15 @@
+version: '3'
+services:
+    learning-tool:
+        build: ./learning-tool
+        volumes:
+            - ./learning-tool/src:/opt/app
+            - ./data:/data
+    notebooks:
+        build: ./learning-tool
+        ports:
+            - "8888:50"
+        command: jupyter notebook --no-browser --allow-root --ip=0.0.0.0 --port=50
+        volumes:
+            - ./learning-tool/src:/opt/app
+            - ./data:/data
